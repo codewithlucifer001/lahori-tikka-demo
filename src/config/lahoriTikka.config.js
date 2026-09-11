@@ -1,8 +1,11 @@
+import logoImg from '../assets/images/logo.png';
+import heroImg from '../assets/images/hero.png';
+
 const config = {
   name: "Lahori Tikka",
   tagline: "Serving Authentic Taste of Lahore Since 1996",
-  logo: "/src/assets/images/logo.png",
-  heroImage: "/src/assets/images/hero.png",
+  logo: logoImg,
+  heroImage: heroImg,
 
   theme: {
     primary: "#C8102E",     // Red from logo
@@ -13,7 +16,7 @@ const config = {
     text: "#FFFFFF",
     textMuted: "#A3A3A3"
   },
-
+// ... keep the rest of your file exactly the same
   branches: [
     { 
       id: 1, 
