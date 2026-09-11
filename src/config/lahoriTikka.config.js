@@ -16,7 +16,7 @@ const config = {
     text: "#FFFFFF",
     textMuted: "#A3A3A3"
   },
-// ... keep the rest of your file exactly the same
+
   branches: [
     { 
       id: 1, 
@@ -43,51 +43,51 @@ const config = {
 
   menu: {
     Chicken: [
-      { name: "Chicken Malai Botti (18 Pcs)", price: 1980 },
-      { name: "Chicken Botti (24 Pcs)", price: 1430 },
-      { name: "Chicken Tikka 6 Pcs", price: 500 },
-      { name: "Chicken Wings (15 Pcs)", price: 1980 },
-      { name: "Chicken Seekh Kabab (6 Pcs)", price: 1320 },
-      { name: "Chicken Shashlik (3 Pcs)", price: 1980 }
+      { name: "Chicken Malai Botti (18 Pcs)", price: 1980, image: "/src/assets/images/menu/chicken-malai-botti.jpg" },
+      { name: "Chicken Botti (24 Pcs)", price: 1430, image: "/src/assets/images/menu/chicken-botti.jpg" },
+      { name: "Chicken Tikka 6 Pcs", price: 500, image: "/src/assets/images/menu/chicken-tikka.jpg" },
+      { name: "Chicken Wings (15 Pcs)", price: 1980, image: "/src/assets/images/menu/chicken-wings.jpg" },
+      { name: "Chicken Seekh Kabab (6 Pcs)", price: 1320, image: "/src/assets/images/menu/chicken-seekh-kabab.jpg" },
+      { name: "Chicken Shashlik (3 Pcs)", price: 1980, image: "/src/assets/images/menu/chicken-shashlik.jpg" }
     ],
     Mutton: [
-      { name: "Mutton Botti (24 Pcs)", price: 2420 },
-      { name: "Mutton Seekh Kabab (6 Pcs)", price: 1650 },
-      { name: "Mutton Chops 9 Pcs", price: 2500 },
-      { name: "Mutton Ribs", price: 4500 },
-      { name: "Mutton Joints", price: 950 }
+      { name: "Mutton Botti (24 Pcs)", price: 2420, image: "/src/assets/images/menu/mutton-botti.jpg" },
+      { name: "Mutton Seekh Kabab (6 Pcs)", price: 1650, image: "/src/assets/images/menu/mutton-seekh-kabab.jpg" },
+      { name: "Mutton Chops 9 Pcs", price: 2500, image: "/src/assets/images/menu/mutton-chops.jpg" },
+      { name: "Mutton Ribs", price: 4500, image: "/src/assets/images/menu/mutton-ribs.jpg" },
+      { name: "Mutton Joints", price: 950, image: "/src/assets/images/menu/mutton-joints.jpg" }
     ],
     Karahi: [
-      { name: "Chicken Karahi (Full)", price: 2100 },
-      { name: "Chicken Karahi (Half)", price: 1150 },
-      { name: "Chicken Desi Karahi (Full)", price: 4400 },
-      { name: "Chicken Desi Karahi (Half)", price: 2300 },
-      { name: "Mutton Nalli Karahi (Full)", price: 4600 },
-      { name: "Mutton Nalli Karahi (Half)", price: 2300 }
+      { name: "Chicken Karahi (Full)", price: 2100, image: "/src/assets/images/menu/chicken-karahi-full.jpg" },
+      { name: "Chicken Karahi (Half)", price: 1150, image: "/src/assets/images/menu/chicken-karahi-half.jpg" },
+      { name: "Chicken Desi Karahi (Full)", price: 4400, image: "/src/assets/images/menu/chicken-desi-karahi-full.jpg" },
+      { name: "Chicken Desi Karahi (Half)", price: 2300, image: "/src/assets/images/menu/chicken-desi-karahi-half.jpg" },
+      { name: "Mutton Nalli Karahi (Full)", price: 4600, image: "/src/assets/images/menu/mutton-nalli-karahi-full.jpg" },
+      { name: "Mutton Nalli Karahi (Half)", price: 2300, image: "/src/assets/images/menu/mutton-nalli-karahi-half.jpg" }
     ],
     Handi: [
-      { name: "Chicken Achari Karahi", price: 2550 },
-      { name: "Mutton Achari", price: 4600 },
-      { name: "Chicken Boneless", price: 3200 }
+      { name: "Chicken Achari Karahi", price: 2550, image: "/src/assets/images/menu/chicken-achari-karahi.jpg" },
+      { name: "Mutton Achari", price: 4600, image: "/src/assets/images/menu/mutton-achari.jpg" },
+      { name: "Chicken Boneless", price: 3200, image: "/src/assets/images/menu/chicken-boneless.jpg" }
     ],
     Fish: [
-      { name: "Fish Tikka (12 Pcs)", price: 2500 },
-      { name: "Rohu Fish (Per Kg)", price: 2750 },
-      { name: "Fingr Fish (Per Kg)", price: 3150 },
-      { name: "Singhara Fish Boneless", price: 3150 }
+      { name: "Fish Tikka (12 Pcs)", price: 2500, image: "/src/assets/images/menu/fish-tikka.jpg" },
+      { name: "Rohu Fish (Per Kg)", price: 2750, image: "/src/assets/images/menu/rohu-fish.jpg" },
+      { name: "Fingr Fish (Per Kg)", price: 3150, image: "/src/assets/images/menu/finger-fish.jpg" },
+      { name: "Singhara Fish Boneless", price: 3150, image: "/src/assets/images/menu/singhara-fish-boneless.jpg" }
     ],
     Tandoor: [
-      { name: "Chicken Naan", price: 650 },
-      { name: "Roghni Naan", price: 100 },
-      { name: "Garlic Naan", price: 90 },
-      { name: "Plain Naan", price: 30 },
-      { name: "Tandoori Paratha", price: 100 }
+      { name: "Chicken Naan", price: 650, image: "/src/assets/images/menu/chicken-naan.jpg" },
+      { name: "Roghni Naan", price: 100, image: "/src/assets/images/menu/roghni-naan.jpg" },
+      { name: "Garlic Naan", price: 90, image: "/src/assets/images/menu/garlic-naan.jpg" },
+      { name: "Plain Naan", price: 30, image: "/src/assets/images/menu/plain-naan.jpg" },
+      { name: "Tandoori Paratha", price: 100, image: "/src/assets/images/menu/tandoori-paratha.jpg" }
     ],
     Beverages: [
-      { name: "1.5 Litre Drink", price: 240 },
-      { name: "Fresh Lime", price: 180 },
-      { name: "Mineral Water Large", price: 150 },
-      { name: "Cold Drink Tin", price: 150 }
+      { name: "1.5 Litre Drink", price: 240, image: "/src/assets/images/menu/1-5-litre-drink.jpg" },
+      { name: "Fresh Lime", price: 180, image: "/src/assets/images/menu/fresh-lime.jpg" },
+      { name: "Mineral Water Large", price: 150, image: "/src/assets/images/menu/mineral-water-large.jpg" },
+      { name: "Cold Drink Tin", price: 150, image: "/src/assets/images/menu/cold-drink-tin.jpg" }
     ]
   },
 
