@@ -20,6 +20,35 @@ export default function Reservation() {
 
   return (
     <section id="reserve" style={{ padding: '48px 24px', backgroundColor: 'var(--color-secondary)' }}>
+      <style>{`
+        .reservation-input {
+          width: 100%;
+          padding: 12px 14px;
+          border-radius: 8px;
+          background: #0d0d0d;
+          border: 1px solid var(--color-border);
+          color: white;
+          font-size: 0.95rem;
+          outline: none;
+          transition: border-color 0.2s ease, box-shadow 0.2s ease;
+          box-sizing: border-box;
+        }
+        .reservation-input:focus {
+          border-color: var(--color-primary);
+          box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.15);
+        }
+        .reservation-form-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+          gap: 16px;
+        }
+        @media (max-width: 480px) {
+          .reservation-form-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
+
       <div style={{ maxWidth: '800px', margin: '0 auto' }}>
         <h2 className="section-title">Reserve a Table</h2>
         <p style={{ color: 'var(--color-text-muted)', marginBottom: '24px', fontSize: '0.95rem' }}>
@@ -30,62 +59,39 @@ export default function Reservation() {
           backgroundColor: 'var(--color-card-bg)',
           padding: '24px',
           borderRadius: '12px',
-          border: '1px solid var(--color-border)',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-          gap: '16px'
-        }}>
+          border: '1px solid var(--color-border)'
+        }} className="reservation-form-grid">
+          
           <div>
-            <label style={{ display: 'block', fontSize: '0.8rem', color: 'var(--color-text-muted)', marginBottom: '6px' }}>Your Name</label>
+            <label style={{ display: 'block', fontSize: '0.8rem', color: 'var(--color-text-muted)', marginBottom: '6px', fontWeight: 500 }}>Your Name</label>
             <input
               type="text"
               required
               placeholder="e.g. Ali Khan"
               value={form.name}
               onChange={e => setForm({ ...form, name: e.target.value })}
-              style={{
-                width: '100%',
-                padding: '10px 12px',
-                borderRadius: '6px',
-                background: '#0d0d0d',
-                border: '1px solid var(--color-border)',
-                color: 'white'
-              }}
+              className="reservation-input"
             />
           </div>
 
           <div>
-            <label style={{ display: 'block', fontSize: '0.8rem', color: 'var(--color-text-muted)', marginBottom: '6px' }}>Phone Number</label>
+            <label style={{ display: 'block', fontSize: '0.8rem', color: 'var(--color-text-muted)', marginBottom: '6px', fontWeight: 500 }}>Phone Number</label>
             <input
               type="tel"
               required
               placeholder="0300-1234567"
               value={form.phone}
               onChange={e => setForm({ ...form, phone: e.target.value })}
-              style={{
-                width: '100%',
-                padding: '10px 12px',
-                borderRadius: '6px',
-                background: '#0d0d0d',
-                border: '1px solid var(--color-border)',
-                color: 'white'
-              }}
+              className="reservation-input"
             />
           </div>
 
           <div>
-            <label style={{ display: 'block', fontSize: '0.8rem', color: 'var(--color-text-muted)', marginBottom: '6px' }}>Select Branch</label>
+            <label style={{ display: 'block', fontSize: '0.8rem', color: 'var(--color-text-muted)', marginBottom: '6px', fontWeight: 500 }}>Select Branch</label>
             <select
               value={form.branch}
               onChange={e => setForm({ ...form, branch: e.target.value })}
-              style={{
-                width: '100%',
-                padding: '10px 12px',
-                borderRadius: '6px',
-                background: '#0d0d0d',
-                border: '1px solid var(--color-border)',
-                color: 'white'
-              }}
+              className="reservation-input"
             >
               {config.branches.map(b => (
                 <option key={b.id} value={b.name} style={{ background: '#111' }}>{b.name}</option>
@@ -94,57 +100,36 @@ export default function Reservation() {
           </div>
 
           <div>
-            <label style={{ display: 'block', fontSize: '0.8rem', color: 'var(--color-text-muted)', marginBottom: '6px' }}>Date</label>
+            <label style={{ display: 'block', fontSize: '0.8rem', color: 'var(--color-text-muted)', marginBottom: '6px', fontWeight: 500 }}>Date</label>
             <input
               type="date"
               required
               value={form.date}
               onChange={e => setForm({ ...form, date: e.target.value })}
-              style={{
-                width: '100%',
-                padding: '10px 12px',
-                borderRadius: '6px',
-                background: '#0d0d0d',
-                border: '1px solid var(--color-border)',
-                color: 'white'
-              }}
+              className="reservation-input"
             />
           </div>
 
           <div>
-            <label style={{ display: 'block', fontSize: '0.8rem', color: 'var(--color-text-muted)', marginBottom: '6px' }}>Time</label>
+            <label style={{ display: 'block', fontSize: '0.8rem', color: 'var(--color-text-muted)', marginBottom: '6px', fontWeight: 500 }}>Time</label>
             <input
               type="time"
               required
               value={form.time}
               onChange={e => setForm({ ...form, time: e.target.value })}
-              style={{
-                width: '100%',
-                padding: '10px 12px',
-                borderRadius: '6px',
-                background: '#0d0d0d',
-                border: '1px solid var(--color-border)',
-                color: 'white'
-              }}
+              className="reservation-input"
             />
           </div>
 
           <div>
-            <label style={{ display: 'block', fontSize: '0.8rem', color: 'var(--color-text-muted)', marginBottom: '6px' }}>Number of Guests</label>
+            <label style={{ display: 'block', fontSize: '0.8rem', color: 'var(--color-text-muted)', marginBottom: '6px', fontWeight: 500 }}>Number of Guests</label>
             <input
               type="number"
               min="1"
               max="30"
               value={form.guests}
               onChange={e => setForm({ ...form, guests: e.target.value })}
-              style={{
-                width: '100%',
-                padding: '10px 12px',
-                borderRadius: '6px',
-                background: '#0d0d0d',
-                border: '1px solid var(--color-border)',
-                color: 'white'
-              }}
+              className="reservation-input"
             />
           </div>
 

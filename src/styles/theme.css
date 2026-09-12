@@ -4,27 +4,33 @@
   --color-primary: #C8102E;
   --color-secondary: #111111;
   --color-accent: #FFD700;
-  --color-bg: #0d0d0d;
-  --color-card-bg: #1a1a1a;
-  --color-border: #2a2a2a;
-  --color-text: #FFFFFF;
-  --color-text-muted: #A3A3A3;
   --font-heading: 'Poppins', sans-serif;
   --font-body: 'Inter', sans-serif;
+}
+
+/* Light Theme Scoped Variables (Customer Facing) */
+.light-theme {
+  --color-bg: #FFFFFF;
+  --color-alt-bg: #F7F7F7;
+  --color-card-bg: #FFFFFF;
+  --color-border: #E5E5E5;
+  --color-text: #1A1A1A;
+  --color-text-muted: #6B6B6B;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* Global fallback outside wrappers */
+body {
+  font-family: var(--font-body);
+  line-height: 1.5;
+  overflow-x: hidden;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-body);
-  line-height: 1.5;
-  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -105,6 +111,13 @@ button.btn-accent {
   margin-bottom: 20px;
 }
 
+/* Light theme card overrides */
+.light-theme .pos-card,
+.light-theme [style*="background: var(--color-card-bg)"],
+.light-theme [style*="background-color: var(--color-card-bg)"] {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
 /* Mobile Category Pill Scroll Container */
 .customer-category-scroll {
   display: flex;
@@ -156,5 +169,39 @@ button.btn-accent {
   .btn-primary, .btn-accent {
     padding: 8px 14px;
     font-size: 0.85rem;
+  }
+}
+
+/* Mobile Optimization Pass (375px Specifics) */
+@media (max-width: 480px) {
+  .header-container header > div {
+    padding: 8px 12px !important;
+  }
+  
+  .branch-modal-container {
+    width: 100% !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    border-radius: 0 !important;
+    padding: 12px !important;
+  }
+
+  .customer-category-scroll {
+    gap: 12px !important;
+    padding-bottom: 12px !important;
+    scroll-snap-type: x mandatory;
+  }
+  .customer-category-scroll > button {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+
+  .menu-workspace-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .hero-fullscreen-wrapper {
+    height: 320px !important;
   }
 }

@@ -7,13 +7,18 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "fetch-images": "node fetch-menu-images.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.116.0",
+    "dotenv": "^17.4.2",
+    "leaflet": "^1.9.4",
     "lucide-react": "^1.44.0",
+    "node-fetch": "^3.3.2",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "react-leaflet": "^5.0.0",
     "react-router-dom": "^7.18.3",
     "recharts": "^3.10.1"
   },
