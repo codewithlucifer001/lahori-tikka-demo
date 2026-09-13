@@ -157,7 +157,7 @@ export default function AdminDashboard({ onExit }) {
     if (existing) {
       setSelectedItems(selectedItems.map(i => i.id === dish.id ? { ...i, quantity: i.quantity + 1 } : i));
     } else {
-      setSelectedItems([...selectedItems, { id: dish.id, name: dish.name, price: dish.price, quantity: 1 }]);
+      setSelectedItems([...selectedItems, { id: dish.id || dish.name, name: dish.name, price: dish.price, quantity: 1 }]);
     }
   };
 
@@ -254,6 +254,32 @@ export default function AdminDashboard({ onExit }) {
       onResetDatabase={resetAllOrders}
       onExit={onExit}
     >
+      <style>{`
+        .manual-order-grid {
+          display: grid;
+          grid-template-columns: 1.4fr 1fr;
+          flex: 1;
+          overflow: hidden;
+        }
+        @media (max-width: 900px) {
+          .manual-order-modal-container {
+            height: 92vh !important;
+            max-height: 92vh !important;
+          }
+          .manual-order-grid {
+            display: flex !important;
+            flex-direction: column !important;
+            overflow-y: auto !important;
+          }
+          .manual-order-left-pane {
+            max-height: 320px;
+            overflow-y: auto !important;
+            border-right: none !important;
+            border-bottom: 1px solid var(--admin-border) !important;
+          }
+        }
+      `}</style>
+
       {activeView === 'overview' && (
         <OverviewView
           animatedRevenue={animatedRevenue}
@@ -290,7 +316,7 @@ export default function AdminDashboard({ onExit }) {
       {/* Manual Order Modal */}
       {showManualModal && (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(5, 7, 10, 0.78)', backdropFilter: 'blur(10px)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 99999, padding: '14px' }}>
-          <div style={{ background: 'var(--admin-surface)', border: '1px solid var(--admin-border)', borderRadius: '16px', width: '100%', maxWidth: '940px', height: '82vh', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 30px 70px -15px rgba(0, 0, 0, 0.9)' }}>
+          <div className="manual-order-modal-container" style={{ background: 'var(--admin-surface)', border: '1px solid var(--admin-border)', borderRadius: '16px', width: '100%', maxWidth: '940px', height: '82vh', display: 'flex', flexDirection: 'column', overflow: 'hidden', boxShadow: '0 30px 70px -15px rgba(0, 0, 0, 0.9)' }}>
             <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--admin-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'var(--admin-surface)' }}>
               <div>
                 <h2 style={{ margin: 0, fontSize: '1.02rem', fontWeight: 700, color: 'var(--admin-text)' }}>Cashier Order Entry</h2>
@@ -298,8 +324,9 @@ export default function AdminDashboard({ onExit }) {
               </div>
               <button onClick={() => setShowManualModal(false)} style={{ background: 'none', border: 'none', color: 'var(--admin-text-muted)', cursor: 'pointer', padding: '4px' }}><X size={20} /></button>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', flex: 1, overflow: 'hidden' }}>
-              <div style={{ padding: '16px', borderRight: '1px solid var(--admin-border)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+            
+            <div className="manual-order-grid">
+              <div className="manual-order-left-pane" style={{ padding: '16px', borderRight: '1px solid var(--admin-border)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '14px' }}>
                   {Object.keys(menuCategories).map((catKey) => (
                     <button key={catKey} type="button" onClick={() => setActiveCategory(catKey)} style={{ backgroundColor: activeCategory === catKey ? 'var(--admin-accent)' : 'var(--admin-surface-hover)', color: activeCategory === catKey ? '#fff' : 'var(--admin-text-muted)', border: '1px solid var(--admin-border)', borderRadius: '6px', padding: '6px 12px', fontSize: '0.74rem', fontWeight: 600, cursor: 'pointer' }}>{catKey}</button>
@@ -317,7 +344,8 @@ export default function AdminDashboard({ onExit }) {
                   ))}
                 </div>
               </div>
-              <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--admin-bg)' }}>
+              
+              <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--admin-bg)', overflowY: 'auto', flex: 1 }}>
                 <div style={{ display: 'flex', gap: '8px', marginBottom: '10px' }}>
                   <input type="text" placeholder="Table / Customer" value={customerName} onChange={e => setCustomerName(e.target.value)} style={{ flex: 1, padding: '9px 12px', borderRadius: '6px', backgroundColor: 'var(--admin-surface)', border: '1px solid var(--admin-border)', color: 'white', fontSize: '0.8rem' }} />
                   <select value={modalBranch} onChange={e => setModalBranch(e.target.value)} style={{ backgroundColor: 'var(--admin-surface)', border: '1px solid var(--admin-border)', borderRadius: '6px', color: 'var(--admin-text)', fontSize: '0.76rem', fontWeight: 600, padding: '0 8px', cursor: 'pointer' }}>
@@ -325,9 +353,9 @@ export default function AdminDashboard({ onExit }) {
                     <option value="Park View City">Park View City</option>
                   </select>
                 </div>
-                <div style={{ flex: 1, overflowY: 'auto', paddingRight: '4px' }}>
+                <div style={{ flex: 1, minHeight: '120px', maxHeight: '200px', overflowY: 'auto', paddingRight: '4px' }}>
                   {selectedItems.length === 0 ? (
-                    <div style={{ textAlign: 'center', padding: '48px 0', color: 'var(--admin-text-muted)', fontSize: '0.82rem' }}>Click dishes on the left to assemble bill.</div>
+                    <div style={{ textAlign: 'center', padding: '32px 0', color: 'var(--admin-text-muted)', fontSize: '0.82rem' }}>Click dishes on the left to assemble bill.</div>
                   ) : (
                     selectedItems.map((item) => (
                       <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '9px 0', borderBottom: '1px solid var(--admin-border)', fontSize: '0.8rem' }}>
@@ -337,7 +365,7 @@ export default function AdminDashboard({ onExit }) {
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                           <button type="button" onClick={() => handleUpdateQty(item.id, -1)} style={{ background: 'var(--admin-surface-hover)', border: '1px solid var(--admin-border)', color: 'white', width: '24px', height: '24px', borderRadius: '4px', cursor: 'pointer' }}>-</button>
-                          <span style={{ fontWeight: 700, minWidth: '16px', textAlign: 'center' }}>{item.quantity}</span>
+                          <span style={{ fontWeight: 700, minWidth: '16px', textAlign: 'center' }}>{item.formattedQuantity || item.quantity}</span>
                           <button type="button" onClick={() => handleUpdateQty(item.id, 1)} style={{ background: 'var(--admin-surface-hover)', border: '1px solid var(--admin-border)', color: 'white', width: '24px', height: '24px', borderRadius: '4px', cursor: 'pointer' }}>+</button>
                           <span style={{ minWidth: '60px', textAlign: 'right', fontWeight: 700, color: 'var(--admin-accent)' }}>Rs. {item.price * item.quantity}</span>
                         </div>
